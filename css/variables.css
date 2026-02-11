@@ -1,0 +1,20 @@
+:root {
+    /* --- PALETA DE COLORES (Elegancia Moderna) --- */
+    --color-primary: #D4AF37;      /* Dorado Mate (Acciones principales) */
+    --color-secondary: #1A1A1A;    /* Negro Suave (Textos y Fondos oscuros) */
+    --color-bg-light: #F9F9F9;     /* Blanco Humo (Fondos de secciones) */
+    --color-white: #FFFFFF;        /* Blanco Puro (Tarjetas) */
+    --color-text-body: #4A4A4A;    /* Gris Oscuro (Lectura cómoda) */
+    --color-accent: #E8DCC4;       /* Beige (Detalles sutiles) */
+
+    /* --- TIPOGRAFÍA --- */
+    /* Usaremos fuentes del sistema por ahora para velocidad, luego importamos Google Fonts */
+    --font-heading: 'Montserrat', 'Helvetica Neue', sans-serif;
+    --font-body: 'Open Sans', system-ui, sans-serif;
+
+    /* --- ESPACIADO Y BORDES --- */
+    --container-width: 1200px;
+    --border-radius: 12px;
+    --shadow-soft: 0 4px 20px rgba(0,0,0,0.05);
+    --transition: all 0.3s ease;
+}

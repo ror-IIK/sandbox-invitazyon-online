@@ -1,0 +1,284 @@
+/* Importamos variables primero (aunque ya estén linkeadas en HTML, es buena práctica resetear aquí) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--color-text-body);
+    line-height: 1.6;
+    background-color: var(--color-white);
+}
+
+/* --- CLASES UTILITARIAS --- */
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    color: var(--color-secondary);
+    line-height: 1.2;
+}
+
+a { text-decoration: none; }
+
+.section { padding: 80px 0; }
+.bg-light { background-color: var(--color-bg-light); }
+
+/* --- BOTONES --- */
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-primary:hover {
+    background-color: #bfa030; /* Un tono más oscuro del dorado */
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    border: 2px solid var(--color-secondary);
+    color: var(--color-secondary);
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+/* --- NAVBAR --- */
+.navbar {
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+    font-family: var(--font-heading);
+}
+
+.logo .dot { color: var(--color-primary); }
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-links a:not(.btn-primary) {
+    color: var(--color-secondary);
+    font-weight: 500;
+}
+
+.menu-toggle { display: none; font-size: 2rem; cursor: pointer; }
+
+/* --- HERO SECTION --- */
+.hero {
+    padding: 100px 0 60px;
+    overflow: hidden;
+}
+
+.hero-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 40px;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+}
+
+.highlight { color: var(--color-primary); }
+
+.badge {
+    background-color: var(--color-accent);
+    color: var(--color-secondary);
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+/* Placeholder del Celular */
+.mockup-phone {
+    width: 280px;
+    height: 550px;
+    background-color: var(--color-secondary);
+    border-radius: 40px;
+    border: 8px solid #333;
+    margin: 0 auto;
+    position: relative;
+    box-shadow: 20px 20px 50px rgba(0,0,0,0.2);
+}
+
+.screen {
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    border-radius: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+}
+
+/* --- FEATURES --- */
+.section-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 50px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.feature-card {
+    background: white;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition);
+}
+
+.feature-card:hover { transform: translateY(-5px); }
+
+.icon-box {
+    font-size: 3rem;
+    color: var(--color-primary);
+    margin-bottom: 20px;
+}
+
+/* --- DEMOS --- */
+.demos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.demo-card {
+    background: white;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+}
+
+.demo-img {
+    height: 300px;
+    background-color: #eee;
+    /* Aquí pondremos las imágenes reales luego */
+}
+
+.demo-boda { background: linear-gradient(45deg, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%); }
+.demo-xv { background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%); }
+.demo-minimal { background: #fdfbf7; }
+
+.demo-info { padding: 20px; text-align: center; }
+
+/* --- RESPONSIVE (Móvil) --- */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* Oculto por defecto en móvil */
+    }
+    
+    .menu-toggle { display: block; }
+
+    .hero-container {
+        grid-template-columns: 1fr; /* Una columna */
+        text-align: center;
+    }
+
+    .hero h1 { font-size: 2.5rem; }
+    
+    .hero-btns {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .btn-outline { margin-left: 0; }
+}
+
+
+/* Extra sin fotos por el momento */
+/* --- AGREGA ESTO AL FINAL DE css/styles.css PARA VER ALGO LINDO YA --- */
+
+/* Fondo temporal para el Hero (Portada) */
+.hero-image {
+    background: radial-gradient(circle at center, #fdfbf7 0%, #fff 100%);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Simulación de pantalla de celular en el Hero */
+.screen {
+    background: linear-gradient(135deg, #fdfbf7 0%, #ebedee 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+}
+.screen::after {
+    content: "Foto de los Novios";
+    font-size: 0.8rem;
+    color: #999;
+    margin-top: 10px;
+}
+
+/* Colores para las tarjetas de demostración (Demos) */
+.demo-boda {
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+    position: relative;
+}
+.demo-boda::after { content: "🤵👰 Boda Elegante"; position: absolute; top: 45%; width: 100%; text-align: center; color: #555; font-weight: bold; }
+
+.demo-xv {
+    background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+    position: relative;
+}
+.demo-xv::after { content: "💃 XV Años"; position: absolute; top: 45%; width: 100%; text-align: center; color: #fff; font-weight: bold; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+
+.demo-minimal {
+    background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
+    position: relative;
+}
+.demo-minimal::after { content: "🌿 Bautizo / Civil"; position: absolute; top: 45%; width: 100%; text-align: center; color: #555; font-weight: bold; }
