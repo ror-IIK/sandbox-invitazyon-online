@@ -58,20 +58,44 @@ a { text-decoration: none; }
 }
 
 /* --- NAVBAR --- */
+/* NAVBAR BASE (Estado inicial transparente) */
 .navbar {
-    padding: 20px 0;
-    position: sticky;
+    padding: 20px 0; /* Espacioso al inicio */
+    position: fixed; /* Fijo siempre */
+    width: 100%;
     top: 0;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
+    left: 0;
+    background: transparent; /* Transparente para ver el Hero */
+    transition: all 0.4s ease; /* Animación suave */
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* ESTADO SCROLLED (Cuando bajas) */
+.navbar.scrolled {
+    padding: 10px 0; /* Se hace más delgada */
+    background: rgba(255, 255, 255, 0.98); /* Se vuelve blanca casi sólida */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Le sale sombrita */
+}
+
+/* Ajuste para que los links se vean bien en fondo blanco o transparente */
+.navbar.scrolled .logo,
+.navbar.scrolled .nav-links a {
+    color: var(--color-secondary); /* Asegura contraste */
 }
 
 .nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 15px; 
+}
+
+
+
+/* El botón en el navegador (Desktop) */
+.btn-nav {
+    margin-left: auto; /* Empuja el botón a la derecha en escritorio */
+    margin-right: 20px; /* Separación con el menú móvil si aparece */
 }
 
 .logo {
@@ -211,10 +235,46 @@ a { text-decoration: none; }
 /* --- RESPONSIVE (Móvil) --- */
 @media (max-width: 768px) {
     .nav-links {
-        display: none; /* Oculto por defecto en móvil */
+        /* Estado cerrado (Oculto) */
+        display: none; 
+        position: absolute;
+        top: 100%; /* Justo debajo de la barra */
+        left: 0;
+        width: 100%;
+        background-color: #fff; /* Fondo blanco sólido */
+        flex-direction: column; /* Lista vertical */
+        padding: 20px 0;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        text-align: center;
+        gap: 20px; /* Espacio entre enlaces */
+    }
+
+    /* Estado ABIERTO (Esta clase la pondrá JS) */
+    .nav-links.active {
+        display: flex;
+        animation: slideDown 0.3s ease forwards;
+    }
+
+    /* Animación suave de entrada */
+    @keyframes slideDown {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
     }
     
-    .menu-toggle { display: block; }
+    .menu-toggle { 
+        display: block;
+        margin-left: 0; /*Reseteamos margen */
+    }
+
+    .btn-nav{
+        padding: 8px 16px;
+        font-size: 0.9rem;
+        margin-right: 0;
+        
+    }
+    .btn-nav span {
+        display: none;
+    }
 
     .hero-container {
         grid-template-columns: 1fr; /* Una columna */
@@ -233,52 +293,87 @@ a { text-decoration: none; }
 }
 
 
-/* Extra sin fotos por el momento */
-/* --- AGREGA ESTO AL FINAL DE css/styles.css PARA VER ALGO LINDO YA --- */
-
-/* Fondo temporal para el Hero (Portada) */
-.hero-image {
-    background: radial-gradient(circle at center, #fdfbf7 0%, #fff 100%);
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* --- PHONE MOCKUP (El iPhone CSS) --- */
+.phone-frame {
+    width: 300px;
+    height: 600px;
+    background-color: #1a1a1a; /* Borde negro del teléfono */
+    border-radius: 45px;
+    box-shadow: 
+        0 0 0 2px #444, /* Borde metálico exterior */
+        0 20px 50px rgba(0,0,0,0.3); /* Sombra 3D */
+    position: relative;
+    padding: 12px; /* Grosor del borde */
+    margin: 0 auto;
+    transition: transform 0.5s ease;
 }
 
-/* Simulación de pantalla de celular en el Hero */
-.screen {
-    background: linear-gradient(135deg, #fdfbf7 0%, #ebedee 100%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-primary);
-    font-weight: bold;
+.phone-frame:hover {
+    transform: translateY(-10px) rotate(-2deg); /* Efecto flotante al pasar el mouse */
+}
+
+.phone-notch {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 25px;
+    background-color: #1a1a1a;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    z-index: 10;
+}
+
+.phone-screen {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 35px; /* Debe ser un poco menos que el frame */
+    overflow: hidden; /* Corta la imagen si es muy grande */
+    position: relative;
+}
+
+.phone-screen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que la foto llene toda la pantalla sin deformarse */
+}
+
+/* --- AJUSTE PARA LAS IMÁGENES DE DEMOS --- */
+.demo-img {
+    height: 250px; /* Altura fija */
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.3s ease;
+}
+
+.demo-card:hover .demo-img {
+    transform: scale(1.05); /* Zoom suave al pasar el mouse */
+}
+
+
+/* Botón Flotante de WhatsApp */
+.float-whatsapp {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25d366; /* Verde WhatsApp oficial */
+    color: #FFF;
+    border-radius: 50px;
     text-align: center;
-    padding: 20px;
-}
-.screen::after {
-    content: "Foto de los Novios";
-    font-size: 0.8rem;
-    color: #999;
-    margin-top: 10px;
+    font-size: 40px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
 }
 
-/* Colores para las tarjetas de demostración (Demos) */
-.demo-boda {
-    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
-    position: relative;
+.float-whatsapp:hover {
+    background-color: #128c7e;
+    transform: scale(1.1);
 }
-.demo-boda::after { content: "🤵👰 Boda Elegante"; position: absolute; top: 45%; width: 100%; text-align: center; color: #555; font-weight: bold; }
-
-.demo-xv {
-    background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
-    position: relative;
-}
-.demo-xv::after { content: "💃 XV Años"; position: absolute; top: 45%; width: 100%; text-align: center; color: #fff; font-weight: bold; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
-
-.demo-minimal {
-    background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
-    position: relative;
-}
-.demo-minimal::after { content: "🌿 Bautizo / Civil"; position: absolute; top: 45%; width: 100%; text-align: center; color: #555; font-weight: bold; }
