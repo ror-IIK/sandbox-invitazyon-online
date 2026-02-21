@@ -107,15 +107,51 @@
         </div>
     </section>
 
-    <section class="rsvp-section">
-        <div class="rsvp-content">
-            <h3>Confirmar Asistencia</h3>
-            <p>Por favor confirma antes del 1 de Octubre</p>
-            
-            <a href="https://wa.me/521XXXXXXXXXX?text=Hola,%20confirmo%20mi%20asistencia%20a%20la%20boda%20de%20Ana%20y%20Carlos" class="btn-gold btn-large">
-                Confirmar por WhatsApp <i class='bx bxl-whatsapp'></i>
-            </a>
-        </div>
+    <section class="rsvp-section" id="rsvp">
+    <div class="container-narrow">
+        <h3>Confirmar Asistencia</h3>
+        <p class="rsvp-deadline">Favor de confirmar antes del 1 de Octubre</p>
+        
+        <form id="rsvpForm" class="rsvp-form">
+            <div class="form-group">
+                <label for="guest-name">Nombre completo</label>
+                <input type="text" id="guest-name" placeholder="Ej. Familia Pérez" required>
+            </div>
+
+            <div class="form-group">
+                <label>¿Asistirás?</label>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="attendance" value="Sí, confirmo" checked>
+                        <span>Sí, confirmo</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="attendance" value="No podré asistir">
+                        <span>No podré</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="guest-count">Número de personas</label>
+                <select id="guest-count">
+                    <option value="1">1 Persona</option>
+                    <option value="2">2 Personas</option>
+                    <option value="3">3 Personas</option>
+                    <option value="4">4 Personas</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="guest-message">Mensaje para los novios (Opcional)</label>
+                <textarea id="guest-message" rows="3" placeholder="¡Felicidades!"></textarea>
+            </div>
+
+            <button type="submit" class="btn-gold btn-block">
+                Enviar Confirmación <i class='bx bxl-whatsapp'></i>
+            </button>
+        </form>
+    </div>
     </section>
 
     <footer>

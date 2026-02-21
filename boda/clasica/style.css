@@ -349,3 +349,105 @@ body.no-scroll {
     font-size: 1.1rem;
     vertical-align: middle;
 }
+
+
+/* --- RSVP FORMULARIO (Mobile First) --- */
+.container-narrow {
+    max-width: 90%; /* Ocupa casi todo el ancho en celular */
+    margin: 0 auto; /* Centrado */
+    width: 500px;   /* Tope máximo para PC */
+}
+
+.rsvp-deadline {
+    margin-bottom: 25px;
+    font-style: italic;
+    color: #666;
+}
+
+.rsvp-form {
+    background: var(--white);
+    padding: 30px 20px; /* Padding cómodo */
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    text-align: left; /* Los formularios se leen mejor a la izquierda */
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--dark);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* INPUTS Y SELECTS (Touch Friendly) */
+input[type="text"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px 15px; /* Área táctil grande */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 1rem; /* Evita que el iPhone haga zoom al escribir */
+    background: #fafafa;
+    transition: 0.3s;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.1);
+}
+
+/* RADIO BUTTONS PERSONALIZADOS (Botones grandes) */
+.radio-group {
+    display: flex;
+    gap: 10px;
+}
+
+.radio-option {
+    flex: 1; /* Ocupan 50% cada uno */
+    position: relative;
+}
+
+.radio-option input {
+    position: absolute;
+    opacity: 0; /* Ocultamos el radio feo por defecto */
+}
+
+.radio-option span {
+    display: block;
+    padding: 12px;
+    text-align: center;
+    background: #f0f0f0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+    border: 1px solid transparent;
+}
+
+/* Estado seleccionado */
+.radio-option input:checked + span {
+    background: var(--gold);
+    color: var(--white);
+    box-shadow: 0 4px 10px rgba(197, 160, 89, 0.3);
+}
+
+/* BOTÓN BLOQUE */
+.btn-block {
+    width: 100%; /* Botón ancho completo */
+    border: none;
+    margin-top: 10px;
+    font-size: 1rem;
+    padding: 15px;
+    cursor: pointer;
+}
