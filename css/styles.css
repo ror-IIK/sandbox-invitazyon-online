@@ -78,7 +78,7 @@ a { text-decoration: none; }
 }
 
 /* Ajuste para que los links se vean bien en fondo blanco o transparente */
-.navbar.scrolled .logo,
+.navbar.scrolled .logo .logo-footer,
 .navbar.scrolled .nav-links a {
     color: var(--color-secondary); /* Asegura contraste */
 }
@@ -105,7 +105,15 @@ a { text-decoration: none; }
     font-family: var(--font-heading);
 }
 
+.logo-footer {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+    font-family: var(--font-heading);
+}
+
 .logo .dot { color: var(--color-primary); }
+.logo-footer .dot { color: var(--color-primary); }
 
 .nav-links {
     display: flex;
