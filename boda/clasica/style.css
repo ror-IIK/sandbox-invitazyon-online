@@ -451,3 +451,66 @@ input:focus, select:focus, textarea:focus {
     padding: 15px;
     cursor: pointer;
 }
+
+
+
+/* Galería Estilos */
+/* 1. Contenedor Principal */
+.snap-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory; /* El "imán" horizontal */
+    scroll-behavior: smooth;    /* Desplazamiento suave */
+    gap: 0;                     /* Sin espacio entre fotos para que encajen al 100% */
+    width: 100%;
+    border-radius: 15px;        /* Opcional: bordes redondeados para tu invitación */
+    
+    /* Ocultar barra de desplazamiento en todos los navegadores */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;     /* Firefox */
+}
+
+.snap-carousel::-webkit-scrollbar {
+    display: none;             /* Chrome, Safari y Opera */
+}
+
+/* 2. Cada Diapositiva */
+.snap-item {
+    flex: 0 0 100%;            /* Cada imagen ocupa exactamente el 100% del ancho */
+    scroll-snap-align: center;  /* Se imanta al centro al soltar el dedo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.snap-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;         /* Evita que la foto se deforme */
+    display: block;
+}
+
+/* 3. Indicadores (Los puntos) */
+.snap-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #d1d1d1; /* Gris claro (inactivo) */
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Estado activo del punto */
+.dot.active {
+    background-color: #b1915e; /* Un tono dorado o el color de tu marca */
+    transform: scale(1.3);     /* Se hace un poco más grande */
+}

@@ -72,6 +72,64 @@ document.addEventListener('DOMContentLoaded', () => {
         isPlaying = !isPlaying;
     });
 
+
+
+    const carousel = document.querySelector('.snap-carousel');
+    const items = document.querySelectorAll('.snap-item');
+    const dots = document.querySelectorAll('.dot');
+    let currentIndex = 0;
+    let autoPlayInterval;
+
+    // 1. EL OBSERVADOR (Sincroniza los puntos y el índice)
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                currentIndex = Array.from(items).indexOf(entry.target);
+                dots.forEach(dot => dot.classList.remove('active'));
+                if(dots[currentIndex]) dots[currentIndex].classList.add('active');
+            }
+        });
+    }, { threshold: 0.6 });
+
+    items.forEach(item => observer.observe(item));
+
+    // 2. FUNCIÓN DE MOVIMIENTO (Con limpieza de seguridad)
+    function startAutoPlay() {
+        // Limpiamos cualquier intervalo previo para evitar que el carrusel se acelere
+        stopAutoPlay(); 
+        
+        autoPlayInterval = setInterval(() => {
+            currentIndex++;
+            if (currentIndex >= items.length) {
+                currentIndex = 0;
+            }
+
+            const slideWidth = items[0].offsetWidth;
+            carousel.scrollTo({
+                left: slideWidth * currentIndex,
+                behavior: 'smooth'
+            });
+        }, 3000);
+    }
+
+    function stopAutoPlay() {
+        clearInterval(autoPlayInterval);
+    }
+
+    // 3. EVENTOS PARA PC Y MÓVIL
+    // Para PC: Se detiene al entrar el mouse, arranca al salir
+    carousel.addEventListener('mouseenter', stopAutoPlay);
+    carousel.addEventListener('mouseleave', startAutoPlay);
+
+    // Para Móvil: Se detiene al tocar, arranca al soltar el dedo
+    carousel.addEventListener('touchstart', stopAutoPlay, {passive: true});
+    carousel.addEventListener('touchend', () => {
+        // Damos un pequeño delay de 1s tras soltar para que no salte bruscamente
+        setTimeout(startAutoPlay, 1000); 
+    }, {passive: true});
+
+    // Iniciar por primera vez
+    startAutoPlay();
     // COPIAR CLABE (UX)
     function copiarCLABE() {
         navigator.clipboard.writeText("123456789012");
